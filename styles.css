@@ -1,0 +1,2081 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+*{
+   margin: 0;padding: 0;
+   scroll-behavior: smooth;
+}
+body {
+   margin: 0;
+   margin-bottom: 70px;
+   padding: 0;
+   background-color: #f0f0f0;
+   position: relative;
+   width: 100%;
+}
+body.scroll{
+   overflow: hidden;
+}
+.affirm{
+   position: absolute;
+   position: fixed;
+   top: 22%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 80%;
+   max-width: 300px;
+   background-color: rgb(58, 58, 58);
+   text-align: center;
+   padding: 10px;
+   border-radius: 15px;
+   z-index: -1;
+   transition: all 0.5s linear;
+   opacity: 0;
+}
+.affirm.active{
+   opacity: 1;
+   z-index: 1000;
+}
+.affirm p{
+   font-size: 14px;
+}
+.text-gray{
+   color: lightgray;
+}
+.text-orange{
+   color: #E7A23B;
+}
+.header-wrap{
+   top: 0;
+   z-index: 10;
+}
+#header{
+   height: 58px;
+}
+#header h4 {
+   margin: 0;
+   color: #242424;
+   color: rgb(0, 0, 0);
+   font-size: 25px;
+   font-weight: normal;
+   font-family: 'Permanent Marker', cursive;
+   color: #fff;
+}
+.run_msg{
+   top: 58px;
+   z-index: 10;
+}
+.todo_now{
+   top: 58px;
+   width: 100%;
+   right: 0;
+   z-index: 15;
+   background: #181a1b;
+   padding: 10px 15px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   transition: right 0.2s linear;
+}
+.todo_now p{
+   margin: 0;
+   font-size: 12px;
+   color: lightgray;
+   line-height: 15px;
+   cursor: pointer;
+}
+.todo_now .fa-times{
+   font-size: 18px;
+   cursor: pointer;
+}
+
+
+#logout {
+   padding: 4px 10px;
+   color: #fff;
+   background-color: transparent;
+   text-transform: capitalize;
+   border: 1px solid rgb(97, 97, 97);
+   border-radius: 4px;
+   text-decoration: none;
+   font-size: 13px !important;
+}
+#logout:hover{
+   color: #fff !important;
+   background-color: #FFC107;
+   transition: all 250ms linear;
+   cursor: pointer;
+}
+.menu-wrap{
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.3);
+   position: absolute;
+   position: fixed;
+   top: 0; left: 0;
+   z-index: -1;
+   opacity: 0;
+   transition: all 0.5s ease-out;
+}
+.menu-wrap.active{
+   opacity: 1;
+   z-index: 100 !important;
+   transition: all 0.5s ease-in;
+}
+.menu_head{
+   background-color: whitesmoke;
+   /* background: linear-gradient(to left, #fffdf8, #fff); */
+   padding: 12px 20px;
+   margin-bottom: 10px;
+}
+.menu_head .close_menu{
+   width: 30px; height: 30px;
+   border-radius: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   transition: all 0.2s linear;
+}
+.menu_head .close_menu:hover{
+   background: rgba(37, 37, 37, 0.05);
+   transition: all 0.2s linear;
+}
+.menu_head .close_menu i{
+   font-size: 18px;
+   color: #242424;
+   transition: all 0.1s linear;
+}
+.menu_head .close_menu:hover i{
+   transform: scale(1.2);
+   transition: all 0.1s linear;
+}
+.menu_head .signed_user{
+   margin-top: 10px;
+}
+.menu_head .signed_user p{
+   margin: 0;
+   margin-bottom: -3px;
+   font-size: 12px;
+   font-weight: 500;
+   font-style: italic;
+   color: #e78d05;
+}
+.menu_head .signed_user{
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+}
+.menu_head .signed_user span{
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   color: #272727;
+   text-transform: uppercase;
+}
+.menu_head .signed_user a{
+   color: #41678b;
+   display: block;
+   text-align: right;
+   font-size: 15px;
+   margin-bottom: 1px;
+}
+.menu-list{
+   position: absolute;
+   position: fixed;
+   display: block;
+   background: #343A40 !important;
+   right: -250px;
+   top: 0;
+   width: 250px;
+   height: 100%;
+   overflow-x: auto;
+   z-index: -1;
+   transition: right 0.2s ease-out;
+}
+.menu-list.active{
+   top: 0;
+   right: 0;
+   transition: right 0.2s linear;
+   z-index: 100 !important;
+}
+.menu-list ul{
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+.menu-list ul li{
+   margin-bottom: 1px;
+}
+.menu-list a{
+   color: rgb(226, 226, 226);
+   text-decoration: none;
+   font-size: 15px;
+   padding: 11px 20px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+.menu-list a .icon_cont{
+   width: 24px;
+   height: 24px;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 8px;
+   background: #ff9c07;
+   border-radius: 3px;
+}
+.menu-list a i{
+   color: #fff !important;
+   font-size: 14px;
+}
+.menu-list ul li a:hover{
+   background: #ffffff1e;
+   color: #fff;
+}
+
+
+/* Account Item and Menu*/
+.acct_item{
+   border: 1px solid #dad9d9;
+   border-radius:5px;
+   position:relative;
+   max-height: 72px;
+   transition: max-height 0.2s linear;
+}
+.acct_item.active{
+   max-height: 500px;
+}
+/* To hide the down part of acct item when the menu icon is clicked on minimize mode */
+.acct_item_down{
+   opacity: 0;
+}
+.acct_item_down.active{
+   transition: all 0.2s linear;
+   opacity: 1;
+}
+#acct_menu{
+   position:absolute; 
+   position:fixed; 
+   background:#f7f7f7; 
+   width: 100%; 
+   left:0; 
+   bottom:-300px; 
+   z-index:-1; 
+   border-radius:8px 8px 0 0;
+}
+#acct_menu a:first-child{
+   margin-top: 10px;
+}
+#acct_menu a{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   color: rgb(0, 0, 0, 0.9);
+   font-size: 16px;
+   padding: 10px 25px;
+   text-decoration: none;
+}
+#acct_menu a i{
+   font-size: 18px;
+   color: rgb(0, 0, 0,.78);
+}
+#acct_menu a:hover{
+   background: rgb(230, 230, 230);
+}
+#acct_menu a span{
+   align-self: center;
+}
+
+#header #navbar {
+   list-style: none;
+   margin: 0;
+}
+
+#header #navbar li {
+   display: inline;
+   font-size: 16px;
+   text-transform: capitalize;
+   padding: 2px 7px 5px 7px;
+   border-radius: 4px;
+   cursor: pointer;
+}
+#header #navbar li a{
+   text-decoration: none;
+   color: #cfcfcf;
+   font-size: 14px;
+   font-weight: 500;
+   padding: 0;
+}
+#header #navbar li:hover a{
+   color: #FFC107;
+   transition: all 150ms;
+}
+#header #navbar li.active{
+   border: 1px solid #FFC107;
+}
+#header #navbar li.active a{
+   color: #FFC107;
+   font-style: italic;
+}
+
+
+
+/* Application Footer Icons */
+.footer_menu,
+.footer{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 18px;
+   position:absolute;
+   position:fixed;
+   bottom:0;
+   left:0;
+   width:100%;
+   z-index:90;
+   padding: 5px 0;
+   background:#1e272e;
+}
+.footer_menu{
+   padding: 11px 10px 7px 10px;
+}
+.footer_menu a{
+   display: inline-flex;
+   flex-direction: column;
+   align-items: center;
+   text-decoration: none;
+   color: lightgray;
+   transition: all 0.15s linear;
+   padding: 0 10px;
+}
+.footer_menu a.active span,
+.footer_menu a.active i{
+   color: #FFC107;
+}
+.footer_menu a:hover span,
+.footer_menu a:hover i{
+   color: #FFC107;
+   transition: all 0.15s linear;
+}
+.footer_menu a i{
+   font-size: 20px;
+   color: liglhtgray;
+   margin-bottom: 1px;
+}
+.footer_menu a span{
+   font-size: 10px;
+   font-weight: 500;
+   color: lightgray;
+}
+
+.dep_withdr{
+   font-size: 13px;
+}
+.dep_withdr a{
+   border-radius: 4px;
+   padding: 3px 10px;
+   text-decoration: none;
+}
+
+.trans_pop{
+   background: #0000004d !important;
+}
+.trans_pop.active{
+   opacity: 1;
+   z-index: 50;
+   transition: all 0.1s linear;
+}
+.disp_trans{
+   position: absolute;
+   position: fixed;
+   bottom: -150px;
+   right: 0;
+   width: 52%;
+   height: 150px;
+   background: #1E272E;
+   border-radius: 3px 0 0 0;
+   z-index: -1;
+   opacity: 0;
+   transform: scale(0.5);
+   transition: all 0.25s linear;
+}
+.disp_trans.active{
+   bottom: 40px;
+   opacity: 1;
+   z-index: 50;
+   transform: scale(1);
+}
+.disp_trans .trans_icon i{
+   font-size: 16px;
+   cursor: pointer;
+}
+.trans_text{
+   font-weight: 700;
+   cursor: pointer;
+   font-size: 9px;
+   padding: 5px 10px;
+   margin-top: 2px;
+   transition: all 0.2s linear;
+}
+.trans_text i{
+   font-size: 15px;
+   transform: rotate(90deg);
+}
+.disp_trans a{
+   display: block;
+   text-decoration: none;
+   font-size: 15px;
+}
+.current {
+   background-color: #FFC107;
+   color: #fff!important;
+}
+#time {
+   font-size: 14px;
+   color: rgb(6, 56, 4);
+}
+#errMsg {
+   transition: linear 350ms;
+}
+
+/* RECORDS TABLE */
+.record_tbl table{
+   font-size: 10px !important;
+}
+.record_tbl table tr td a,
+.record_tbl table tr td,
+.record_tbl table tr th{
+   font-size: 10px !important;
+   padding: 4px 3px !important;
+   color: black;
+}
+.record_tbl table tr th{
+   color: whitesmoke;
+   font-weight: 500;
+   padding: 5px !important;
+}
+table {
+   position: relative;
+   width: 100%;
+   border-collapse: collapse;
+}
+thead {
+   width: 100%;
+}
+tr>th{
+   font-size: 15px;
+   font-weight: 400;
+   padding: 8px 30px;
+   text-transform: capitalize;
+   background: #25292c;
+   color: lightgray;
+   text-align: center;
+}
+tbody>tr:nth-child(even){
+   background-color: #fff;
+}
+
+tr>td {
+   padding: 7px 17px;
+   text-align: center;
+   /* color: #000; */
+}
+
+tbody tr td:hover{
+   background: lightgray;
+   cursor: pointer;
+}
+tbody tr:last-child td:hover{
+   background: none;
+}
+#column-totalling>td{
+   font-size: 13px !important;
+   font-weight: 500;
+   color: #FFC107;
+}
+#modify_tbl i{
+   padding: 3px 8px;
+   font-size: 15px;
+}
+
+form input[type='button'] {
+   padding: 5px 20px;
+   border-radius: 4px;
+   margin-left: 10px;
+   color: white;
+   background-color: rgb(3, 134, 167);
+   border: none; 
+   outline: none;
+}
+
+form>input:nth-child(2) {
+   width: 150px; 
+   padding: 5px 10px;
+   border-radius: 5px;
+   border: none;
+   outline: none;
+   border: 1px solid rgba(137, 140, 141, 0.5);
+}
+form>input:nth-child(3), #period{
+   width: 150px; 
+   padding: 5px 10px;
+   border-radius: 5px;
+   border: none;
+   outline: none;
+   border: 1px solid rgba(137, 140, 141, 0.5);
+}
+select option:first-child{
+   font-style: italic;
+}
+select option{
+   color: rgb(0, 0, 0);
+}
+#searchTable{
+   position: relative;
+}
+#searchTable>i{
+   position: absolute;
+   top: 10px;
+   left: 14px;
+   color: rgb(7, 146, 69);
+}
+input[type='search']{
+   background-color: rgba(165, 147, 147, 0.1);
+   padding: 5px 40px;
+   border-radius: 50px;
+   border: none;
+   outline: none;
+}
+
+
+/* Home page design */
+.curr-bal h6{
+   color: rgb(153, 153, 153);
+   font-weight: normal;
+   margin: 0 0 2px 0;
+   font-size: 14px;
+}
+.curr-bal h5{
+   color: rgb(235, 232, 232);
+   font-size: 18px;
+   font-weight: normal;
+}
+
+/* Register Account */
+.register{
+   border-radius: 5px;
+}
+#change_pwd form input,
+.edit-form input,
+.edit-form select,
+.new_todo input,
+.new_todo select,
+#edit_trades form input,
+#edit_trades form select,
+.new_trade input,
+.new_trade select,
+.new_savings input,
+.new_budget input,
+.new_savings select,
+.edit_budget input,
+.edit_savings input,
+.edit_savings select,
+.register form input,
+.register form select,
+.register form textarea,
+.login form input,
+.form-record input,
+.form-record select,
+.edit_profile input,
+.edit_profile select,
+.edit_profile textarea,
+.pair_form input,
+.pair_form select,
+.deposit_form input,
+.deposit_form select,
+.new_account input,
+.new_account select{
+   padding: 7px 10px !important;
+   border-radius: 5px;
+   border: none;
+   background: transparent;
+   outline: none;
+   color: white;
+   border: 1px solid rgb(226, 226, 226);
+   margin-bottom: 10px;
+}
+#edit_trades form input,
+#edit_trades form select{
+   margin-bottom: 5px;
+   border: 1px solid rgb(173, 173, 173);
+}
+#edit_trades form input[type='submit']{
+   border: none;
+   font-size: 14px;
+   padding: 5px !important;
+}
+#change_pwd form input,
+.edit-form input,
+.edit-form select,
+.new_todo input,
+.new_todo select,
+.new_trade input,
+.new_trade select,
+.new_budget input,
+.new_budget input,
+.new_savings input,
+.new_savings select,
+.edit_budget input,
+.edit_savings input,
+.edit_savings select{
+   padding: 5px 6px !important;
+   color: rgb(36, 35, 35);
+   border: 1px solid rgb(141, 141, 141);
+   margin-top: -5px;
+}
+.new_savings input[type='file'],
+.edit_savings input[type='file']{
+   border: none;
+   color: rgb(36, 35, 35);
+   padding: 0 !important;
+}
+#change_pwd form input[type='submit'],
+.edit-form input[type='submit'],
+.new_todo input[type='submit'],
+.new_trade input[type='submit'],
+.new_budget input[type='submit'],
+.new_savings input[type='submit'],
+.edit_budget input[type='submit'],
+.edit_savings input[type='submit']{
+   padding: 8px !important;
+}
+
+#edit-acct form input,
+#edit-acct form select{
+   padding: 8px 10px;
+   border-radius: 5px;
+   background: transparent;
+   outline: none;
+   color: white;
+   border: 1px solid lightgray;
+   margin-bottom: 10px;
+}
+
+.form-record input,
+.form-record select{
+   margin-bottom: 0;
+}
+
+#edit_trades form input:focus,
+#edit_trades form select:focus,
+.register form input:focus,
+.register form select:focus,
+.register form textarea:focus,
+.login form input:focus,
+.form-record select:focus,
+.form-record input:focus,
+.edit_profile form input:focus,
+.edit_profile form select:focus,
+.edit_profile form textarea:focus,
+.pair_form input:focus,
+.pair_form select:focus,
+#change_pwd form input:focus,
+#edit-acct form input:focus,
+#edit-acct form select:focus,
+.deposit_form input:focus,
+.deposit_form select:focus,
+.new_account input:focus,
+.new_account select:focus{
+   border: 1px solid #FFC107;
+}
+.new_todo input:focus,
+.new_todo select:focus,
+.edit_budget input:focus,
+.new_trade input:focus,
+.new_trade select:focus,
+.new_savings input:focus:not(input[type='file']),
+.new_budget input:focus,
+.new_savings select:focus,
+.edit-form input:focus,
+.edit_savings input:focus:not(input[type='file']),
+.edit_savings select:focus{
+   border: 1px solid #ff9c07;
+}
+.new_todo input::placeholder,
+.new_trade input::placeholder,
+.edit_budget input::placeholder,
+.new_budget input::placeholder,
+.new_budget input::placeholder,
+.register form input::placeholder,
+.register form textarea::placeholder,
+.login form input::placeholder,
+.form-record input::placeholder,
+.pair_form input::placeholder,
+.deposit_form input::placeholder,
+.new_account input::placeholder{
+   font-style: italic;
+}
+#change_pwd form input::placeholder{
+   font-style: italic;
+   color: #6e6e6e;
+}
+.register form label,
+.login form label,
+.form-record label,
+.edit_profile label,
+.pair_form label,
+#edit-acct form label,
+.deposit_form label,
+.new_account label{
+   color: #FFC107;
+   margin-bottom: 2px;
+   font-size: 15px;
+}
+.new_todo label,
+.new_trade label,
+.new_budget label,
+.new_savings label,
+.edit_edit label,
+.edit_budget label,
+.edit-form label,
+.edit_savings label{
+   color: #25292c;
+   font-weight: 600;
+   font-size: 14px;
+}
+
+.new_account input:checked,
+.new_account select:disabled,
+.new_account input:disabled{
+   border: 1px solid gray;
+   color: gray;
+}
+
+.popup_chgpwd_bg,
+.popup_edit_rec,
+.popup_new_todo,
+.popup_edit_trade,
+.popup_show_trade,
+.popup_start_date,
+.popup_curve,
+.popup_budget_del,
+.popup_plan_trade,
+.popup_trans_del,
+.popup_edit_saving,
+.popup_edit_budget,
+.popup_receipt,
+.popup_new_saving,
+.popup_new_budget,
+.exit_popup,
+.popup_plan,
+.popup_upd_plan,
+.popup_bg,
+.reset_popup,
+.delete_popup,
+.disable_popup,
+.trans_pop,
+.user_acct_popup{
+   position: fixed;
+   top: 0; left: 0;
+   width: 100%; height: 100%;
+   background-color: rgb(0, 0, 0, 0.7);
+   padding: 10px;
+   box-sizing: border-box;
+   z-index: -1;
+
+   /* Positioning properties */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   opacity: 0;
+   transition: all 0.2s linear;
+}
+.popup_edit_trade{
+   justify-content: flex-end;
+   transition: all 0.1s linear;
+}
+.popup_edit_trade{
+   background-color: transparent;
+}
+
+.popup_chgpwd_bg.active,
+.popup_edit_rec.active,
+.popup_new_todo.active,
+.popup_edit_trade.active,
+.popup_show_trade.active,
+.popup_start_date.active,
+.popup_start_date.active,
+.popup_curve.active,
+.popup_budget_del.active,
+.popup_plan_trade.active,
+.popup_trans_del.active,
+.popup_edit_saving.active,
+.popup_edit_budget.active,
+.popup_receipt.active,
+.popup_new_saving.active,
+.popup_new_budget.active,
+.exit_popup.active,
+.popup_plan.active,
+.popup_upd_plan.active,
+.popup_bg.active,
+.reset_popup.active,
+.delete_popup.active,
+.disable_popup.active,
+.user_acct_popup.active{
+   z-index: 100001;
+   opacity: 1;
+   transition: all 0.2s linear;
+}
+.popup_edit_trade.active{
+   z-index: 1000001;
+   transition: all 0.1s linear;
+}
+
+
+
+/* Edit Record CSS */
+#edit-acct{
+   width: 90%;
+   background: #343A40;
+   border-radius: 10px;
+   border: 1px solid rgb(71, 71, 71);
+   margin: 0 auto;
+   position: absolute;
+   position: fixed;
+   top: 100px;
+   left: 5%;
+   z-index: -10;
+   opacity: 0;
+}
+#change_pwd i,
+#edit-acct i{
+   font-size: 20px;
+   color: rgb(182, 182, 182);
+   cursor: pointer;
+}
+#updateRec,
+#updateAcct{
+   border-radius: 2px;
+   font-weight: 600 !important;
+   text-transform: capitalize;
+}
+
+
+/* Delete Record CSS */
+#change_pwd,
+#edit-rec,
+#new_todo,
+#edit_trades,
+#show_trades,
+#start-date,
+#equity-curve,
+#budget_del,
+#new_trade,
+#edit_savings,
+#edit_budget,
+#trans_del,
+#show_receipt,
+#new_savings,
+#new_budget,
+#exit_app,
+#plan_del,
+#plan_update,
+#delete_rec,
+#delete_acct,
+#reset_acct,
+#del_acct,
+#disable_acct,
+#user_acct{
+   width: 90%;
+   max-width: 320px;
+   background: #f3f3f3;
+   border-radius: 5px;
+   border: 1px solid rgb(71, 71, 71);
+   position: absolute;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   transition: all 0.15s linear;
+   opacity: 0;
+   transform: scale(0);
+}
+#change_pwd{
+   width: 80%;
+}
+#edit_trades{
+   width: 50%;
+   padding: 12px 13px;
+   margin-top: 150px;
+}
+#edit_trades h5{
+   font-size: 17px;
+   font-weight: normal !important;
+   color: rgb(255, 190, 68);
+   margin-bottom: 10px;
+}
+#equity-curve{
+   width: 100% !important;
+   border-radius: 0px;
+}
+
+#edit_savings,
+#edit_budget,
+#show_receipt{
+   border: none;
+   background: none;
+   box-shadow: none;
+}
+#new_todo,
+#start-date,
+#new_trade,
+#new_savings,
+#new_budget{
+   background: none !important;
+   border: none !important;
+   box-shadow: none !important;
+}
+#change_pwd.active,
+#edit-rec.active,
+#new_todo.active,
+#edit_trades.active,
+#show_trades.active,
+#start-date.active,
+#equity-curve.active,
+#budget_del.active,
+#new_trade.active,
+#edit_savings.active,
+#edit_budget.active,
+#trans_del.active,
+#show_receipt.active,
+#new_savings.active,
+#new_budget.active,
+#exit_app.active,
+#plan_del.active,
+#plan_update.active,
+#delete_rec.active,
+#reset_acct.active,
+#del_acct.active,
+#disable_acct.active,
+#user_acct.active{
+   opacity: 1;
+   transform: scale(1);
+   transition: all 0.15s linear;
+}
+
+#popup_btn{
+   text-align: right;
+}
+#popup_btn button{
+   border: none;
+   outline: none;
+   background: transparent;
+   color: #025099;
+   padding: 5px 10px;
+   font-size: 14px;
+   font-weight: 500;
+   border-radius: 5px;
+}
+#popup_btn button:hover{
+   background: rgb(2, 80, 153);
+   color: #fff;
+   transition: all 0.15s linear;
+}
+
+/* Login */
+.login{
+   width: 100%;
+   max-width: 400px;
+   margin: 0 auto;
+   border-radius: 8px !important;
+}
+
+
+/* User Profile CSS */
+.user_profile{
+   width: 100%;
+}
+.user_profile div>i{
+   font-size: 17px;
+   cursor: pointer;
+}
+.user_profile div{
+   position: relative;
+}
+.user_profile div .profile_menu{
+   position: absolute;
+   right: -10px;
+   top: 7px;
+   background: #f7f7f7;
+   padding: 7px 0;
+   border-radius: 3px;
+   overflow: hidden;
+   opacity: 0;
+   transition: all 0.05s linear;
+   transform: scale(0.75);
+   z-index: -1;
+}
+.user_profile div .profile_menu.active{
+   opacity: 1;
+   transform: scale(1);
+   z-index: 100;
+}
+.user_profile div .profile_menu a{
+   display: block;
+   font-size: 15px;
+   color: #141414;
+   padding: 7px 15px;
+   text-decoration: none;
+   transition: all 0.2s linear;
+}
+.user_profile div .profile_menu a:hover{
+   color: #181a1b;
+   background: rgb(230, 229, 229);
+}
+
+/* User profile account table CSS */
+.trans_hist{
+   font-size: 12px;
+   cursor: pointer;
+}
+#acct_table tr th{
+   background: transparent;
+   color: #FFB610;
+   text-transform: capitalize;
+   font-size: 14px;
+   text-align: left;
+   padding: 0 45px 5px 5px;
+}
+#acct_table tr th:last-child{
+   text-align: center;
+   padding: 0 50px 5px 50px;
+}
+#acct_table tr{
+   background: transparent;
+   border-bottom: 1px solid rgb(99, 98, 98);
+}
+#acct_table tr:not(#acct_table tr:first-child):hover{
+   background: rgb(43, 43, 43);
+}
+#acct_table tr:last-child{
+   border-bottom: none;
+}
+#acct_table tr td{
+   padding: 5px 0 20px 5px;
+   color: lightgray;
+   font-size: 14px;
+   text-align: left;
+}
+#acct_table tr td:last-child{
+   text-align: center;
+   /* padding: 0 30px 5px 30px; */
+}
+#acct_table tr td:hover{
+   background: transparent;
+}
+
+/* VIEW ACCOUNT TABLE */
+.pre_head{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   grid-gap: 10px;
+}
+.detail_wrap{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   background: linear-gradient(to left, #F0F0F0, lightgray);
+   padding: 10px 15px;
+   border-radius: 5px;
+   box-shadow: 1px 1px 2px 1px lightgray;
+   box-sizing: border-box;
+}
+.trans_hist{
+   /* background: #e4e4e4;
+   padding: 6px 15px;
+   border-radius: 8px;
+   font-size: 13px;
+   font-weight: 600; */
+   box-shadow: 1px 1px 5px 1px rgb(211, 211, 211);
+   /* cursor: pointer; */
+}
+/* .trans_hist:hover{
+   background: rgb(218, 218, 218);
+   transition: all 0.2s linear;
+} */
+.trade_tbl,
+.pre_head,
+.acct_trans_hist{
+   position: relative;
+   width: 100%;
+   max-width: 500px;
+   margin: 0 auto;
+}
+.trade_tbl ul,
+.acct_trans_hist ul{
+   list-style: none;
+   margin: 0;
+   padding: 0;
+
+   display: table;
+   table-layout: fixed;
+   width: 100%;
+}
+.trade_head{
+   background: #25292C;
+}
+
+/* Sticky top head on window scroll */
+.acct_tbl_head,
+.trans_tbl_head{
+   position: sticky;
+   top: 77px;
+   z-index: 10 !important;
+}
+/* .acct_no_type{
+   position: sticky;
+   top: 86px;
+   z-index: 10 !important;
+} */
+.trade_tbl ul:first-child li{
+   border: none;
+   color: #fff;
+   padding: 7px 10px;
+   font-size: 12px;
+}
+.trade_tbl .trade_head li,
+.acct_trans_hist .trade_head li{
+   color: white;
+   padding: 5px 10px;
+   font-size: 14px;
+}
+.trade_tbl ul li,
+.acct_trans_hist ul li{
+   padding: 4px 5px;
+   display: table-cell;
+   color: rgb(43, 43, 43);
+}
+.trans_total li{
+   padding: 4px 5px;
+   display: table-cell;
+}
+.trade_tbl .trade_item{
+   margin: 3px 0 8px 0;
+}
+.trade_tbl .each_trade{
+   position: relative;
+}
+.trade_tbl .each_trade:hover{
+   background: rgb(223, 223, 223);
+   cursor: pointer;
+}
+
+/* Popup for each trade on click of the trade */
+.trade_pop_bg{
+   position: absolute;
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   /* background: rgb(0, 0, 0, 0.5); */
+   opacity: 0;
+   z-index: -1;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.trade_pop_bg.active{
+   opacity: 1;
+   z-index: 10001;
+}
+.trade_pop{
+   width: 300px;
+   padding: 10px 20px;
+   background: rgb(240, 240, 240);
+   box-shadow: 1px 2px 2px 1px rgb(180, 180, 180);
+   border-radius: 5px;
+
+   transform: scale(0.5);
+   transition: all 0.1s linear;
+   opacity: 0;
+   z-index: -1;
+}
+.trade_pop.active{
+   transform: scale(1);
+   opacity: 1;
+   z-index: 10;
+}
+.trade_pop .head{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.dismiss_pop{
+   text-align: center;
+   margin: 10px auto;
+}
+.dismiss_pop p{
+   margin: 0; padding: 0;
+   border-radius: 3px;
+   padding: 8px 30px;
+   color: rgb(243, 243, 243);
+   font-size: 15px;
+   background: #1E272E;
+   box-shadow: 1px 2px 7px 1px rgb(163, 163, 163);
+   display: inline;
+   cursor: pointer;
+   transition: all 0.2s linear;
+}
+.dismiss_pop p:hover{
+   background: #161718;
+   color: white;
+}
+
+.trade_tbl .trade_item ul li{
+   border-top: 1px solid rgb(219, 219, 219);
+}
+.trade_tbl .trade_item .first_item li{
+   border-top: 1px solid rgb(197, 197, 197);
+}
+.trade_tbl .trade_item .trade_total li,
+.trans_total li{
+   color: #E7781C;
+   text-transform: uppercase;
+   font-size: 14px;
+   font-weight: 600;
+   padding: 2px 5px;
+   border-top: 5px solid rgb(201, 201, 201);
+}
+
+#show_trades h4{
+   font-size: 16px;
+   font-weight: 500 !important;
+}
+#show_trades table{
+   width: 100%;
+   margin-bottom: 10px;
+}
+#show_trades table tr{
+   background: none !important;
+}
+#show_trades table tr:hover:not(:first-child){
+   background: rgb(78, 78, 78) !important;
+}
+#show_trades table tr th{
+   color: #fcb229;
+   font-style: italic;
+   border-bottom: 1px solid rgb(88, 88, 88);
+}
+#show_trades table td{
+   color: lightgray;
+   padding: 3px 5px !important;
+}
+#show_trades table th,
+#show_trades table td{
+   font-size: 12px;
+   background: none;
+}
+#edit_trades .dismiss_edit span,
+#show_trades .dismiss_trades span{
+   color: rgb(184, 182, 182);
+   text-align: right;
+   border: 1px solid gray;
+   font-size: 13px;
+   font-style: italic;
+   border-radius: 3px;
+   padding: 4px 15px;
+   cursor: pointer;
+   transition: all 0.2s linear;
+}
+#edit_trades .dismiss_edit span{
+   padding: 5px;
+   border: none;
+}
+#show_trades .dismiss_trades span:hover{
+   color: white;
+   border: 1px solid white;
+   transition: all 0.2s linear;
+}
+#show_trades .edit_trades,
+#show_trades .delete_trades{
+   border-radius: 3px;
+   padding: 3px 10px;
+   cursor: pointer;
+   transform: scale(0);
+   transition: all 0.1s linear;
+}
+#show_trades .edit_trades.active,
+#show_trades .delete_trades.active{
+   transform: scale(1);
+   transition: all 0.1s linear;
+}
+
+
+/* NET PROFIT CSS */
+.net_profit{
+   font-weight:500; 
+   font-size:16px;
+   padding: 10px;
+   text-align: left;
+   background: #d3d3d3;
+   position: sticky;
+   bottom: 53px !important;
+   z-index: 20;
+}
+
+
+
+/* Account Menu */
+.acct_menu_icon{
+   width: 30px; 
+   height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   border-radius: 50%;
+   margin: -10px -5px 0 0;
+}
+.acct_menu_icon:hover{
+   background-color: gray;
+   transition: all 0.1s ease-in-out;
+}
+.acct_menu_icon:hover i{
+   color: #fff !important;
+}
+.minimize{
+   position: relative;
+   cursor: pointer;
+}
+.minimize:hover div{
+   border: 1px solid #FFC107;
+   transition: all 0.05s linear;
+}
+.boxes{
+   position: relative;
+   margin: 200px;
+   width: 1000px; height: 1000px;
+   border: 2px solid black;
+   background: #242424;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.logo_txt{
+   position: absolute;
+   /* display: none; */
+   z-index: 2;
+   color: #f5f5f5;
+   font-size: 400px;
+   margin-bottom: 40px;
+   font-weight: bolder;
+   font-family: 'Permanent Marker', cursive;
+}
+.box, .box1{
+   position: absolute;
+   width: 850px;
+   height: 500px;
+   background: #FFC107;
+   border-radius: 400px 50px;
+   border: 50px solid lightgray;
+}
+.box{
+   /* transform: rotate(150deg); */
+   z-index: 1;
+}
+.box1{
+   transform: rotate(90deg);
+}
+.minimize .max{
+   position: absolute;
+   top: 0px;
+   right: 25px;
+   width: 15px;
+   height: 14px;
+   margin: -12px -5px 0 0;
+   border-radius: 2px;
+   border: 0.1em solid #fff;
+   transition: all 0.02s linear;
+}
+.minimize .max.active{
+   width: 16px;
+   height: 12px;
+   border-radius: 3px;
+   transition: all 0.02s linear;
+}
+.minimize .min{
+   position: absolute;
+   top: 1px;
+   left: -32px;
+   width: 0px;
+   height: 0px;
+   opacity: 0;
+   background: #343A40;
+   margin: -10px -5px 0 0;
+   border-radius: 2px;
+   border: 1px solid #d3d3d3;
+   transition: width 0.02s, height 0.02s linear;
+}
+.minimize .min.active{
+   width: 14px;
+   height: 11px;
+   opacity: 1;
+   transition: width 0.02s, height 0.02s linear;
+}
+
+
+
+
+
+
+.account_menu{
+   background: #f7f7f7;
+   border-radius: 4px;
+   position: absolute;
+   right: 10px;
+   z-index: -1;
+   opacity: 0;
+   transition: all 0.08s linear;
+   transform: scale(0.5);
+   padding: 8px 0;
+}
+.account_menu.active{
+   z-index: 10001;
+   opacity: 1;
+   transform: scale(1);
+}
+
+.account_menu a{
+   display: block;
+   text-decoration: none;
+   padding: 10px 30px 10px 15px;
+   font-size: 16px;
+   color: #171718;
+   transition: all 0.2s ease-in-out;
+}
+.account_menu a:hover{
+   color: #181a1b;
+   background: rgb(230, 229, 229);
+}
+
+
+/* DAILY, WEEKLY AND MONTH PROFITS */
+.dashboard{
+   text-align: right;
+}
+.dashboard a{
+   text-decoration: none;
+   color: #df6502;
+   font-size: 12px;
+   border: 1px solid rgb(224, 224, 224);
+   font-weight: 600;
+   background: rgb(231, 230, 230);
+   padding: 5px 12px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.prof_range_inputs{
+   font-size:10px;
+   font-weight: 500;
+   width:85px;
+   background:none;
+   outline:none;
+   border:1px solid rgb(185, 185, 185);
+   padding:3px 4px;
+   border-radius:5px;
+   cursor:pointer;
+}
+
+/* COMPENSATION PLAN */
+.plan_list{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+   grid-gap: 10px;
+}
+.plan_list .plan{
+   width: 100px;
+   height: 100px;
+   color: rgb(240, 236, 236);
+   background: #343A40;
+   padding-bottom: 12.5px;
+   text-align: center;
+   border-radius: 6px;
+   box-shadow: #adadad 1px 2px 5px;
+   transition: all 0.15s linear;
+   text-decoration: none;
+   overflow: hidden;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.plan_list .plan:hover{
+   background: #42484e;
+   transition: all 0.15s linear;
+}
+.plan_list .plan:last-child:hover{
+   background: #f3ca13 !important;
+}
+.plan_list .start_plan{
+   position: absolute;
+   top: 3px;
+   left: 73px;
+   color: white;
+   background: #ff8800;
+   font-size: 6px;
+   font-weight: 400;
+   font-style: italic;
+   padding: 1px 4px;
+   border-radius: 20px;
+}
+.plan_list .plan .plan_period{
+   color: rgb(194, 194, 194);
+}
+.plan_list .plan i{
+   font-size: 35px;
+   color: #ff8800;
+}
+
+.my_plan{
+   margin: 15px 0 5px 0;
+   padding-bottom: 5px;
+   padding: 5px 10px;
+}
+.my_plan:hover{
+   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}
+.my_plan div a{
+   text-decoration: none;
+   padding: 0;
+   display: block;
+}
+.my_plan:not(.my_plan:last-child){
+   border-bottom: 1px solid rgb(212, 212, 212);
+}
+.todo_desc{
+   word-break: break-word;
+   overflow: hidden;
+   line-height: 18px;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   cursor: pointer !important;
+   transition: all 0.2s linear;
+}
+.todo_desc.active{
+   -webkit-line-clamp: 10;
+   transition: all 0.2s linear;
+}
+
+
+/* Plan Item */
+#back_to_list{
+   text-decoration: none;
+   color: #df6502;
+   font-size: 12px;
+   border: 1px solid #cacaca;
+   font-weight: 600;
+   background: #e7e6e6;
+   padding: 5px 12px;
+   border-radius: 3px;
+   cursor: pointer;
+}
+#back_to_list:hover{
+   background: #dddddd;
+   transition: all 0.1s linear;
+}
+.plan_details{
+   position: relative;
+}
+.plan_details .col_item{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   margin-bottom: 3px;
+   font-size: 13px;
+}
+.plan_details .plan_progress{
+   position: absolute;
+   left: 0; right: 0; bottom: 0;
+   width:100%;
+   height:4px;
+   border-top: 1px solid rgb(117, 117, 117);
+}
+.col_item span:first-child{
+   font-size: 10px;
+   font-style: italic;
+   color: #f5ae2a;
+   font-weight: 600;
+}
+.col_item span:nth-child(2){
+   color: rgb(248, 248, 248);
+}
+
+
+/* EQUITY CURVE */
+.trade_curve{
+   position: relative;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   background: #4d4f52 !important;
+   margin-bottom: 0;
+   height: 250px;
+   max-height: 0px;
+   z-index: -1;
+   opacity: 0;
+   overflow: hidden;
+   transition: all 0.2s linear;
+}
+.trade_curve.active{
+   max-height: 300px;
+   z-index: 1 !important;
+   margin-bottom: 10px;
+   transition: all 0.2s linear;
+   opacity: 1;
+}
+#equity_curve_chart{
+   height: 230px;
+   margin-bottom: -20px;
+}
+#equity_curve_chart h5{
+   position: absolute;
+   top: 0;
+   left: 50%;
+   transform: translate(-50%, -10px);
+   font-size: 17px;
+   font-weight: 500;
+   font-style: italic;
+}
+#equity_curve_chart .chart_details{
+   position: absolute;
+   bottom: 42px;
+   right: 25px;
+   color: lightgray;
+   font-size: 9px;
+   opacity: 1;
+   transition: all 0.2s linear;
+}
+#equity_curve_chart .chart_details.active{
+   opacity: 1;
+   transition: all 0.2s linear;
+}
+#equity_curve_chart .chart_details p{
+   margin: 0;
+   line-height: 13px;
+   font-size: 10px;
+}
+
+
+
+/* PLAN AND SAVING TABLES */
+.plan_details .act span:first-child{
+   color: rgb(184, 184, 184);
+}
+.saving_table table tr:nth-child(even){
+   background: #f1f1f0;
+}
+.saving_table table tr{
+   background: white;
+   border-bottom: 1px solid #e9e8e8;
+}
+.saving_table table .inc_exp_total{
+   background: #343A40 !important;
+}
+.saving_table table .inc_exp{
+   border-top: 2px solid #e9e8e8;
+   border-bottom: 2px solid rgb(197, 197, 197);
+}
+.saving_table table .inc_exp td{
+   font-size: 12px !important;
+   font-weight: 600 !important;
+   color: rgb(32, 32, 32) !important;
+   text-align: right;
+}
+.saving_table table tr:hover:not(.saving_month, .month_total, .inc_exp){
+   background-color: #f7f7f7;
+}
+.saving_table table tr th,
+.plan_table table tr th{
+   color: rgb(243, 243, 243);
+}
+.plan_table table tr{
+   border: 1px solid #dfdfdf;
+}  
+.plan_table table tr.weekend{
+   background-color: #f5f4f4;
+}
+.plan_table table tr:hover:not(.weekend){
+   background: rgb(85, 85, 85);
+   transition: all 0.1s linear;
+}
+.plan_table table tr:hover td{
+   color: #fff !important;
+   cursor: pointer;
+}
+.saving_table table tr:hover td{
+   cursor: auto;
+}
+.plan_table table tr td:not(.weekend_active td){
+   color: #000;
+}
+.plan_table table .weekend:hover td{
+   cursor: auto !important;
+}
+
+/* TODO Table */
+.todo table tr:last-child{
+   border-bottom: 5px solid rgb(190, 190, 190);
+}
+.btn_container{
+   position: sticky;
+   top: 77px;
+   z-index: 10;
+   background-color: #F0F0F0;
+   padding-top: 7px;
+   padding-bottom: 4px;
+   border-bottom: 1px solid #b9b9b9;
+}
+.trans{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 5px;
+}
+.trans div button{
+   outline: none;
+   color:#e7781c;
+   border:1px solid #e7781c;
+   font-size:12px;
+   padding:2px 8px;
+   border-radius: 4px;
+   transition: all 0.2s linear;
+}
+.trans div button:hover{
+   background-color: #e7781c;
+   color: #fff;
+   transition: all 0.2s linear;
+}
+.trans div button{
+   transform: scale(0);
+   transition: all 0.1s linear;
+}
+.trans div button.active{
+   transform: scale(1);
+   transition: all 0.1s linear;
+}
+.trans div button:last-child{
+   transform: scale(1);
+}
+.saving_table table tr td:hover,
+.plan_table table tr td:hover{
+   background: none;
+}
+.saving_table tr td .receipt{
+   width: 20px;
+   height: 20px;
+   overflow: hidden;
+   /* background: orange; */
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.saving_table tr td .receipt img{
+   width: 100%;
+}
+.saving_table table tr td{
+   color: #000;
+}
+.saving_table table tr.month_total{
+   background: #ebe9e9;
+}
+.saving_table table tr.month_total td{
+   font-weight: bold;
+   padding: 0;
+   margin: 0;
+   color: #181a1b;
+}
+.saving_table table .month_total td{
+   padding: 0 !important;
+   font-size: 10.5px !important;
+}
+.saving_table .saving_outcome td{
+   font-size: 12px !important;
+}
+.saving_table .overall_total td{
+   font-size: 14px !important;
+   font-weight: 500 !important;
+}
+.saving_table table .month_total td:first-child p{
+   /* font-style: italic; */
+   margin: 0;
+   margin-bottom: 4px;
+}
+.saving_table table .month_total td:first-child{
+   font-size: 13px !important;
+}
+.saving_table table .last{
+   border-bottom: 7px solid rgb(133, 133, 133) !important;
+}
+.saving_table table tr td,
+.saving_table table tr th,
+.plan_table table tr td,
+.plan_table table tr th{
+   font-size: 10px !important;
+   padding: 2px 5px;
+}
+.saving_table table tr td,
+.saving_table table tr th{
+   font-size: 10.5px !important;
+   padding: 5px;
+}
+.saving_table table .saving_month:first-child{
+   display: none !important;
+}
+.saving_table table .saving_month td{
+   font-size: 15px !important;
+   padding-top: 25px !important;
+   padding-bottom: 2px !important;
+}
+#show_trades table tr th input,
+#show_trades table tr td input,
+.saving_table table tr th input,
+.saving_table table tr td input{
+   -webkit-appearance: none;
+   appearance: none;
+   border: 1px solid #ff8800;
+   color: currentColor;
+   border-radius: 0.2em;
+   font: inherit;
+   font-size: 1.15em;
+   width:1em;
+   height:1em;
+   margin: 0;
+   cursor:pointer;
+   transform: translateY(-0.075em);
+   display: grid;
+   place-content: center;
+}
+
+#show_trades table tr th input,
+#show_trades table tr td input{
+   width: 12px;
+   height: 12px;
+   margin-bottom: -3px;
+   border: 1px solid #DD9F2B;
+}
+#show_trades table tr th input::before,
+#show_trades table tr td input::before,
+.saving_table table tr th input::before,
+.saving_table table tr td input::before{
+   content: "";
+   width: 0.65em;
+   height: 0.65em;
+   transform: scale(0);
+   transition: 50ms transform ease-in-out;
+   transform-origin: bottom left;
+   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+   box-shadow: inset 1em 1em #ff8800;
+}
+#show_trades table tr th input::before,
+#show_trades table tr td input::before{
+   box-shadow: inset 1em 1em #DD9F2B;
+}
+#show_trades table tr th input:checked::before,
+#show_trades table tr td input:checked::before,
+.saving_table table tr th input:checked::before,
+.saving_table table tr td input:checked::before{
+   transform: scale(1);
+}
+
+.weekend_active{
+   color: rgb(255, 123, 0) !important;
+   font-style: italic;
+ }
+.plan_table table tr:last-child th{
+   color: rgb(245, 245, 245);
+   font-weight: 600;
+   font-size: 12px !important;
+}
+.plan_table_highlight{
+   background: #ffac31 !important;
+}
+/* .plan_table_highlight td i, */
+.plan_table_highlight td{
+   color: #fff !important;
+   font-weight: 700;
+}
+.plan_table .weekend_highlight{
+   background: gray !important;
+}
+.plan_table .weekend_highlight i,
+.plan_table .weekend_highlight td{
+   color: lightgray !important;
+}
+
+.close_custom{
+   position:absolute;
+   top:8px;
+   right:10px;
+   color:lightgray;
+   cursor:pointer;
+   transition: all 0.15s linear;
+}
+.close_custom:hover{
+   color: orange;
+   transition: all 0.15s linear;
+}
+
+
+/* PLAN TRADE FORM */
+#new_start_date,
+#plan_list,
+#new_plan_trade,
+#equity_curve{
+   border:1px solid #f5dbc8;
+   color:#ee8733;
+   font-size: 16px;
+   font-weight: 500;
+   padding: 2px 8px;
+   cursor:pointer;
+   margin-left: 5px;
+   margin-bottom: -10px;
+   border-radius: 5px;
+   transition: all 0.1s linear;
+}
+#new_start_date:hover,
+#plan_list:hover,
+#new_plan_trade:hover,
+#equity_curve:hover{
+   transform: scale(1.15);
+   background: #f7e3d5;
+   border:1px solid #f5dbc8;
+   color: #E77C24;
+}
+#new_plan_trade.hide{
+   transform: scale(0);
+   transition: all 0.2s linear;
+}
+#plan_trade_form{
+   max-height: 0px;
+   z-index: -1;
+   opacity: 0;
+   transition: max-height 0.2s linear;
+}
+#plan_trade_form.active{
+   max-height: 500px;
+   z-index: 10;
+   opacity: 1;
+   transition: max-height 0.2s linear;
+}
+
+/* NEW START DATE */
+.start_date_form{
+   width: 100%;
+   max-width: 230px;
+   padding: 10px 15px 20px 15px;
+   background: #ffffff;
+   border-radius: 5px;
+}
+.start_date_form h6{
+   color: white;
+   font-size: 18px;
+}
+.start_date_form input[type="date"]{
+   outline: none;
+   border: 1px solid lightgray;
+}
+.start_date_form input[type="submit"]{
+   outline: none;
+   border: none;
+   width: 100%;
+   font-size: 15px;
+   font-weight: 500;
+   border-radius: 3px;
+   background-color: rgb(255, 187, 0);
+}
+
+
+
+
+/* ADMIN SECTION */
+#add_pair{
+   width: 100%;
+   max-width: 350px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Screen sizing */
+@media (min-width:991px){
+   #change_pwd,
+   #edit-acct{
+      width: 25%;
+      margin: 0 auto;
+      position: absolute;
+      top: 220px;
+      left: 35.5%;
+      z-index: -10;
+      opacity: 0;
+   }
+
+
+   /* ADMIN SECTION */
+   #add_pair,
+   .deposit_form,
+   #withdraw_note,
+   #new_account{
+      width: 30%;
+   }
+
+   /* NET PROFIT CSS */
+   .net_profit{
+      bottom: 53px;
+   }
+}
+
+
+@media (min-width:768px){
+   .deposit{
+      background: transparent !important;
+      margin-top: 10px;
+   }
+
+   /* Account Item and Menu*/
+   .acct_item{
+      border: 1px solid #dad9d9;
+      border-radius:5px;
+      position:relative;
+      max-height: 72px;
+      transition: max-height 0.2s linear;
+   }
+   .acct_item.active{
+      max-height: 500px;
+   }
+
+   /* NET PROFIT CSS */
+   .net_profit{
+      bottom: 53px;
+   }
+}
